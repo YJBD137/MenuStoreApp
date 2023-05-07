@@ -449,7 +449,30 @@ namespace MenuStoreApp.Database
 
         public void AddSales(String INVENTORY_ID, String QUANTITY, String SALES_DATE, String CUSTOMER_ID, String EMPLOYEE_ID, String PAYMENT_ID, String paidAMOUNT)
         {
-            
+            cmd.CommandText = 
+                "SELECT MAX(SALES_ID) " +
+                "FROM SALES";
+
+            try
+            {
+
+                conn.Open();
+                if (conn.State == ConnectionState.Open)
+                {
+
+                    int ID = Convert.ToInt32(cmd.ExecuteReader());
+                    ExecutedCode = ("Completed: \n------\n" + cmd.CommandText + "\n------\n" + "\n------\n");
+                    Msg = "Process Complete";
+
+                }
+
+            }
+            catch (Exception e)
+            {
+                ExecutedCode = "Error: " + e;
+                Msg = "Process Falied";
+            }
+            finally { conn.Close(); }
 
             cmd.CommandText =
                     "INSERT INTO SALES (" +
