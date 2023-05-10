@@ -4,28 +4,29 @@ namespace MenuStoreApp
 {
     class Setup
     {
-         public Setup()
+        public Setup(string[] args)
         {
+            
             Console.ForegroundColor = ConsoleColor.Green;
 
-                start:
-                Console.Beep(1000, 500);
-                Console.WriteLine("Enter Credentials:");
-                string Cred = Console.ReadLine();
+        start:
+            Console.Beep(1000, 500);
+            Console.WriteLine("Enter Credentials:");
+            string? Cred = Console.ReadLine();
 
-                string[] C = Cred.Split(' ');
+            string[] C = Cred.Split(' ');
 
                 Console.Clear();
 
-                DatabaseAccess.setup setup;
+                DatabaseAccess.Setup setup;
 
                 try
                 {
-                    setup = new DatabaseAccess.setup(C[0], C[1]);
+                    setup = new DatabaseAccess.Setup(C[0], C[1]);
                     Console.WriteLine(setup.Msg);
                     Console.WriteLine(setup.ExecutedCode);
 
-                    if (!setup.isConnected)
+                    if (!(setup.isConnected))
                     {
                         goto start;
                     }
@@ -49,7 +50,7 @@ namespace MenuStoreApp
                     if (c.Equals("y"))
                     {
 
-                        setup.Custom(Console.ReadLine());
+                        setup.Execute(Console.ReadLine());
 
                     }
                     else
@@ -66,7 +67,7 @@ namespace MenuStoreApp
                             Console.WriteLine("All Values of the Query:");
                             string Values = Console.ReadLine();
 
-                            setup.Custom(Query, Values);
+                            setup.Query(Query, Values);
 
                             Console.WriteLine(setup.ExecutedCode);
                         }
