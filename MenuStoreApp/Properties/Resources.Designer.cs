@@ -65,7 +65,117 @@ namespace MenuStoreApp.Properties {
         /// </summary>
         public static System.Drawing.Bitmap COLOR_BG {
             get {
-                object obj = ResourceManager.GetObject("COLOR BG", resourceCulture);
+                object obj = ResourceManager.GetObject("COLOR_BG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap COLOR_BG1 {
+            get {
+                object obj = ResourceManager.GetObject("COLOR_BG1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap iconadd {
+            get {
+                object obj = ResourceManager.GetObject("iconadd", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap iconconsignment {
+            get {
+                object obj = ResourceManager.GetObject("iconconsignment", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap iconeye {
+            get {
+                object obj = ResourceManager.GetObject("iconeye", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap iconfinancials {
+            get {
+                object obj = ResourceManager.GetObject("iconfinancials", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap iconhome {
+            get {
+                object obj = ResourceManager.GetObject("iconhome", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap iconinventory {
+            get {
+                object obj = ResourceManager.GetObject("iconinventory", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap iconreceipt {
+            get {
+                object obj = ResourceManager.GetObject("iconreceipt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_add_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_add_50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_consignment_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_consignment_50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_exit_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_exit_50", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -75,7 +185,57 @@ namespace MenuStoreApp.Properties {
         /// </summary>
         public static System.Drawing.Bitmap icons8_eye_32 {
             get {
-                object obj = ResourceManager.GetObject("icons8-eye-32", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_eye_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_graph_report_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_graph_report_50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_home_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_home_50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_minimize_window_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_minimize_window_50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_open_box_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_open_box_50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_receipt_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_receipt_50", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -85,7 +245,47 @@ namespace MenuStoreApp.Properties {
         /// </summary>
         public static System.Drawing.Bitmap icons8_search_52 {
             get {
-                object obj = ResourceManager.GetObject("icons8-search-52", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_search_52", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_search_521 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_search_521", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_shopping_cart_52 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_shopping_cart_52", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap iconsearch {
+            get {
+                object obj = ResourceManager.GetObject("iconsearch", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap iconshoppingcart {
+            get {
+                object obj = ResourceManager.GetObject("iconshoppingcart", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -95,7 +295,17 @@ namespace MenuStoreApp.Properties {
         /// </summary>
         public static System.Drawing.Bitmap MAIN_DASHBOARD_LOGO {
             get {
-                object obj = ResourceManager.GetObject("MAIN DASHBOARD LOGO", resourceCulture);
+                object obj = ResourceManager.GetObject("MAIN_DASHBOARD_LOGO", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap MAIN_DASHBOARD_LOGO1 {
+            get {
+                object obj = ResourceManager.GetObject("MAIN_DASHBOARD_LOGO1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -105,8 +315,28 @@ namespace MenuStoreApp.Properties {
         /// </summary>
         public static System.Drawing.Bitmap MENU_LOGO__1_ {
             get {
-                object obj = ResourceManager.GetObject("MENU LOGO (1)", resourceCulture);
+                object obj = ResourceManager.GetObject("MENU_LOGO__1_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap MENU_LOGO__1_1 {
+            get {
+                object obj = ResourceManager.GetObject("MENU_LOGO__1_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon menulogo_icon {
+            get {
+                object obj = ResourceManager.GetObject("menulogo_icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -123,9 +353,29 @@ namespace MenuStoreApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap menuwhitelogo1 {
+            get {
+                object obj = ResourceManager.GetObject("menuwhitelogo1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap PASSWORD_LOGO {
             get {
-                object obj = ResourceManager.GetObject("PASSWORD LOGO", resourceCulture);
+                object obj = ResourceManager.GetObject("PASSWORD_LOGO", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap PASSWORD_LOGO1 {
+            get {
+                object obj = ResourceManager.GetObject("PASSWORD_LOGO1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -135,7 +385,17 @@ namespace MenuStoreApp.Properties {
         /// </summary>
         public static System.Drawing.Bitmap USERNAME_LOGO {
             get {
-                object obj = ResourceManager.GetObject("USERNAME LOGO", resourceCulture);
+                object obj = ResourceManager.GetObject("USERNAME_LOGO", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap USERNAME_LOGO1 {
+            get {
+                object obj = ResourceManager.GetObject("USERNAME_LOGO1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

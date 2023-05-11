@@ -1,6 +1,6 @@
 ﻿namespace MenuStoreApp
 {
-    partial class Inventory
+    partial class Consignment
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,16 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inventory));
             panelSearch = new Panel();
-            buttonAddItem = new Button();
+            buttonAddConsignor = new Button();
             panelUnderLineSearch = new Panel();
             textBoxSearchInput = new TextBox();
             buttonSearch = new Button();
             dataGridView1 = new DataGridView();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewImageColumn();
-            Column2 = new DataGridViewButtonColumn();
             panelSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -45,7 +41,7 @@
             // panelSearch
             // 
             panelSearch.BackColor = Color.FromArgb(242, 190, 167);
-            panelSearch.Controls.Add(buttonAddItem);
+            panelSearch.Controls.Add(buttonAddConsignor);
             panelSearch.Controls.Add(panelUnderLineSearch);
             panelSearch.Controls.Add(textBoxSearchInput);
             panelSearch.Controls.Add(buttonSearch);
@@ -54,28 +50,29 @@
             panelSearch.Margin = new Padding(5, 4, 5, 4);
             panelSearch.Name = "panelSearch";
             panelSearch.Size = new Size(1902, 75);
-            panelSearch.TabIndex = 0;
+            panelSearch.TabIndex = 1;
             panelSearch.TabStop = true;
             // 
-            // buttonAddItem
+            // buttonAddConsignor
             // 
-            buttonAddItem.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            buttonAddItem.BackColor = Color.Transparent;
-            buttonAddItem.Dock = DockStyle.Right;
-            buttonAddItem.FlatAppearance.BorderColor = Color.White;
-            buttonAddItem.FlatAppearance.BorderSize = 2;
-            buttonAddItem.FlatAppearance.MouseOverBackColor = Color.FromArgb(241, 207, 192);
-            buttonAddItem.FlatStyle = FlatStyle.Flat;
-            buttonAddItem.Image = Properties.Resources.iconadd;
-            buttonAddItem.ImageAlign = ContentAlignment.MiddleRight;
-            buttonAddItem.Location = new Point(1660, 0);
-            buttonAddItem.Name = "buttonAddItem";
-            buttonAddItem.Size = new Size(242, 75);
-            buttonAddItem.TabIndex = 2;
-            buttonAddItem.Text = "Add Item";
-            buttonAddItem.TextImageRelation = TextImageRelation.ImageBeforeText;
-            buttonAddItem.UseVisualStyleBackColor = false;
-            buttonAddItem.Click += buttonAddItem_Click;
+            buttonAddConsignor.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            buttonAddConsignor.BackColor = Color.Transparent;
+            buttonAddConsignor.Dock = DockStyle.Right;
+            buttonAddConsignor.FlatAppearance.BorderColor = Color.White;
+            buttonAddConsignor.FlatAppearance.BorderSize = 2;
+            buttonAddConsignor.FlatAppearance.MouseOverBackColor = Color.FromArgb(241, 207, 192);
+            buttonAddConsignor.FlatStyle = FlatStyle.Flat;
+            buttonAddConsignor.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            buttonAddConsignor.Image = Properties.Resources.iconadd;
+            buttonAddConsignor.ImageAlign = ContentAlignment.MiddleRight;
+            buttonAddConsignor.Location = new Point(1660, 0);
+            buttonAddConsignor.Name = "buttonAddConsignor";
+            buttonAddConsignor.Size = new Size(242, 75);
+            buttonAddConsignor.TabIndex = 2;
+            buttonAddConsignor.Text = "Add Consignor";
+            buttonAddConsignor.TextImageRelation = TextImageRelation.ImageBeforeText;
+            buttonAddConsignor.UseVisualStyleBackColor = false;
+            buttonAddConsignor.Click += buttonAddConsignor_Click;
             // 
             // panelUnderLineSearch
             // 
@@ -92,7 +89,7 @@
             textBoxSearchInput.Font = new Font("Verdana", 24F, FontStyle.Regular, GraphicsUnit.Point);
             textBoxSearchInput.Location = new Point(207, 15);
             textBoxSearchInput.Name = "textBoxSearchInput";
-            textBoxSearchInput.PlaceholderText = "Brand Name or SKU";
+            textBoxSearchInput.PlaceholderText = "Name";
             textBoxSearchInput.Size = new Size(1447, 49);
             textBoxSearchInput.TabIndex = 1;
             // 
@@ -104,6 +101,7 @@
             buttonSearch.FlatAppearance.MouseDownBackColor = Color.Transparent;
             buttonSearch.FlatAppearance.MouseOverBackColor = Color.FromArgb(241, 207, 192);
             buttonSearch.FlatStyle = FlatStyle.Flat;
+            buttonSearch.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
             buttonSearch.ForeColor = SystemColors.ActiveCaptionText;
             buttonSearch.Image = Properties.Resources.iconsearch;
             buttonSearch.ImageAlign = ContentAlignment.MiddleRight;
@@ -120,49 +118,21 @@
             // 
             dataGridView1.BackgroundColor = Color.White;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column3, Column2 });
             dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.GridColor = SystemColors.ControlDarkDark;
             dataGridView1.Location = new Point(0, 75);
-            dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
             dataGridView1.Size = new Size(1902, 808);
-            dataGridView1.TabIndex = 1;
+            dataGridView1.TabIndex = 2;
             // 
-            // Column1
+            // Consignment
             // 
-            Column1.HeaderText = "Column1";
-            Column1.MinimumWidth = 6;
-            Column1.Name = "Column1";
-            Column1.Width = 125;
-            // 
-            // Column3
-            // 
-            Column3.HeaderText = "Column3";
-            Column3.Image = (Image)resources.GetObject("Column3.Image");
-            Column3.MinimumWidth = 6;
-            Column3.Name = "Column3";
-            Column3.Width = 125;
-            // 
-            // Column2
-            // 
-            Column2.HeaderText = "Column2";
-            Column2.MinimumWidth = 6;
-            Column2.Name = "Column2";
-            Column2.Width = 125;
-            // 
-            // Inventory
-            // 
-            AutoScaleDimensions = new SizeF(13F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            AutoSizeMode = AutoSizeMode.GrowAndShrink;
             Controls.Add(dataGridView1);
             Controls.Add(panelSearch);
-            Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            Margin = new Padding(5, 4, 5, 4);
-            Name = "Inventory";
+            Name = "Consignment";
             Size = new Size(1902, 883);
             panelSearch.ResumeLayout(false);
             panelSearch.PerformLayout();
@@ -173,13 +143,10 @@
         #endregion
 
         private Panel panelSearch;
-        private Button buttonSearch;
-        private TextBox textBoxSearchInput;
+        private Button buttonAddConsignor;
         private Panel panelUnderLineSearch;
+        private TextBox textBoxSearchInput;
+        private Button buttonSearch;
         private DataGridView dataGridView1;
-        private Button buttonAddItem;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewImageColumn Column3;
-        private DataGridViewButtonColumn Column2;
     }
 }

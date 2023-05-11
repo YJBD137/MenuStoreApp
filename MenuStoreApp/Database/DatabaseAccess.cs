@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System.Collections;
+using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Transactions;
@@ -17,15 +18,15 @@ namespace MenuStoreApp.Database
         public bool isConnected = false;
 
         public DatabaseAccess(string UserId, string Password)
-          {
+        {
 
-             user = @"Data Source = DESKTOP-0I7BTFQ; Initial Catalog = Project_Inv; User Id = " + UserId + "; Password = " + Password + ";";
-             conn = new SqlConnection(user);
-             cmd = new SqlCommand(user, conn);
+            user = @"Data Source = DESKTOP-0I7BTFQ; Initial Catalog = Project_Inv; User Id = " + UserId + "; Password = " + Password + ";";
+            conn = new SqlConnection(user);
+            cmd = new SqlCommand(user, conn);
 
-             cmd.CommandTimeout = 60;
-            
-            try{
+            cmd.CommandTimeout = 60;
+
+            try {
 
                 conn.Open();
                 if (conn.State == ConnectionState.Open)
@@ -34,12 +35,12 @@ namespace MenuStoreApp.Database
                     Msg = "\n------\n" + "Connected" + "\n------\n";
                 }
 
-                }
-            catch(Exception e){
+            }
+            catch (Exception e) {
                 ExecutedCode = "Error: " + e;
                 Msg = "Process Falied";
             }
-            finally{conn.Close();}
+            finally { conn.Close(); }
         }
 
         public void Execute(String Code)
@@ -65,6 +66,46 @@ namespace MenuStoreApp.Database
                 Msg = "Process Falied";
             }
             finally { conn.Close(); }
+        }
+
+        public string[]? SColReader(String Code)
+        {
+            string[] result = { };
+            cmd.CommandText = Code;
+
+            try
+            {
+
+                conn.Open();
+                if (conn.State == ConnectionState.Open)
+                {
+
+                    SqlDataReader col = cmd.ExecuteReader();
+
+                    for(int i = 1; col.Read(); i++) 
+                    {
+
+                        result = new string[col.FieldCount];
+                        result.SetValue(col, i - 1);
+
+                    }
+
+                    ExecutedCode = ("Completed: \n------\n" + cmd.CommandText + "\n------\n");
+                    Msg = "Process Complete";
+
+                    return result;
+                }
+
+            }
+            catch (Exception e)
+            {
+                ExecutedCode = "Error: " + e;
+                Msg = "Process Falied";
+            }
+            finally { conn.Close(); }
+
+            return result;
+            
         }
 
         // Setup Methods
@@ -135,7 +176,7 @@ namespace MenuStoreApp.Database
                         }
                         else
                         {
-                            throw new EmptyValuesException();
+                        throw new SqlNullValueException();
                         }
 
                 }
@@ -351,7 +392,7 @@ namespace MenuStoreApp.Database
             }
             finally { conn.Close(); }
 
-            String code =
+            String code1 =
                     "INSERT INTO SALES (" +
                     "Tranaction_ID ," +
                     "INVENTORY_ID ," +
@@ -382,7 +423,7 @@ namespace MenuStoreApp.Database
                     "SET OnHAND_QTY = OnHAND_QTY - " + QUANTITY +
                     "WHERE INVENTORY_ID = " + INVENTORY_ID;
             
-            Execute(code);
+            Execute(code1);
 
         }
 
@@ -397,15 +438,6 @@ namespace MenuStoreApp.Database
             }
         }
 
-        class EmptyValuesException : Exception
-        {
-            public EmptyValuesException()
-            {
-
-                Console.Write("EmptyValuesException: SQL Query Values can not be empty.");
-
-            }
-        }
-
+      
     }
 }
