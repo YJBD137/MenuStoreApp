@@ -1,5 +1,8 @@
-﻿using System.Data;
+﻿using System.Collections;
+using System.Data;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
+using System.Transactions;
 
 namespace MenuStoreApp.Database
 {
@@ -7,23 +10,23 @@ namespace MenuStoreApp.Database
 
         //Made by Yuan Jason B. Dimayuga
 
-        string user;
+        private string user;
 
         SqlConnection conn;
         SqlCommand cmd;
-        public string ExecutedCode, Msg;
+        public string? ExecutedCode, Msg;
         public bool isConnected = false;
 
-        public DatabaseAccess(string User_Id, string Password)
-          {
+        public DatabaseAccess(string UserId, string Password)
+        {
 
-             user = @"Data Source = DESKTOP-0I7BTFQ; Initial Catalog = Project_Inv; User Id = " + User_Id + "; Password = " + Password + ";";
-             conn = new SqlConnection(user);
-             cmd = new SqlCommand(user, conn);
+            user = @"Data Source = DESKTOP-0I7BTFQ; Initial Catalog = Project_Inv; User Id = " + UserId + "; Password = " + Password + ";";
+            conn = new SqlConnection(user);
+            cmd = new SqlCommand(user, conn);
 
-             cmd.CommandTimeout = 60;
-            
-            try{
+            cmd.CommandTimeout = 60;
+
+            try {
 
                 conn.Open();
                 if (conn.State == ConnectionState.Open)
@@ -32,79 +35,87 @@ namespace MenuStoreApp.Database
                     Msg = "\n------\n" + "Connected" + "\n------\n";
                 }
 
-                }
-            catch(Exception e){
+            }
+            catch (Exception e) {
                 ExecutedCode = "Error: " + e;
                 Msg = "Process Falied";
             }
-            finally{conn.Close();}
+            finally { conn.Close(); }
         }
 
-// Setup Methods
-
-        public class setup 
+        public void Execute(String Code)
         {
-            string user;
+            cmd.CommandText = Code;
 
-            SqlConnection conn;
-            SqlCommand cmd;
-            public string ExecutedCode, Msg;
-            public bool isConnected = false;
-
-            public setup(string User_Id, string Password)
+            try
             {
 
-                user = @"Data Source = DESKTOP-0I7BTFQ; Initial Catalog = Project_Inv; User Id = " + User_Id + "; Password = " +  Password + ";";
-                conn = new SqlConnection(user);
-                cmd = new SqlCommand(user,conn);
-
-                cmd.CommandTimeout = 60;
-
-                try
+                conn.Open();
+                if (conn.State == ConnectionState.Open)
                 {
 
-                    conn.Open();
-                    if (conn.State == ConnectionState.Open)
-                    {
-                        isConnected = true;
-                        Msg = "\n------\n" + "Connected" + "\n------\n";
-                    }
+                    cmd.ExecuteScalar();
+                    ExecutedCode = ("Completed: \n------\n" + cmd.CommandText + "\n------\n");
+                    Msg = "Process Complete";
+                }
 
-                }
-                catch (Exception e)
-                {
-                    ExecutedCode = "Error: " + e;
-                    Msg = "Process Falied";
-                }
-                finally { conn.Close(); }
             }
-
-            public void Custom(String Code)
+            catch (Exception e)
             {
-                cmd.CommandText = Code;
+                ExecutedCode = "Error: " + e;
+                Msg = "Process Falied";
+            }
+            finally { conn.Close(); }
+        }
 
-                try
+        public string[]? SColReader(String Code)
+        {
+            string[] result = { };
+            cmd.CommandText = Code;
+
+            try
+            {
+
+                conn.Open();
+                if (conn.State == ConnectionState.Open)
                 {
 
-                    conn.Open();
-                    if (conn.State == ConnectionState.Open)
+                    SqlDataReader col = cmd.ExecuteReader();
+
+                    for(int i = 1; col.Read(); i++) 
                     {
 
-                        cmd.ExecuteScalar();
-                        ExecutedCode = ("Completed: \n------\n" + cmd.CommandText + "\n------\n");
-                        Msg = "Process Complete";
+                        result = new string[col.FieldCount];
+                        result.SetValue(col, i - 1);
+
                     }
 
-                }
-                catch (Exception e)
-                {
-                    ExecutedCode = "Error: " + e;
-                    Msg = "Process Falied";
-                }
-                finally { conn.Close(); }
-            }
+                    ExecutedCode = ("Completed: \n------\n" + cmd.CommandText + "\n------\n");
+                    Msg = "Process Complete";
 
-            public void Custom(String Query, String Values)
+                    return result;
+                }
+
+            }
+            catch (Exception e)
+            {
+                ExecutedCode = "Error: " + e;
+                Msg = "Process Falied";
+            }
+            finally { conn.Close(); }
+
+            return result;
+            
+        }
+
+        // Setup Methods
+
+        public class Setup : DatabaseAccess 
+        {
+            public Setup(string UserId, string Password) : base(UserId, Password) { }
+            
+
+            public void Query(String Query, String Values)
             {
                 string[] c = Values.Split(',');
 
@@ -113,44 +124,51 @@ namespace MenuStoreApp.Database
                         if (c.Length > 0)
                         {
 
-                            switch (Query)
-                            {
+                        switch (Query)
+                        {
 
-                                case "AddEmployee":
+                            case "AddEmployee":
 
-                                    AddEmployee(c[0], c[1], c[2], c[3], c[4], c[5], c[6], c[7], c[8]);                                    break;
+                                AddEmployee(c[0], c[1], c[2], c[3], c[4], c[5], c[6], c[7], c[8]); break;
 
-                                case "AddProduct":
+                            case "AddProduct":
 
-                                    AddProduct(c[0], c[1], c[2], c[3], c[4], c[5], c[6], c[7]);
+                                AddProduct(c[0], c[1], c[2], c[3], c[4], c[5], c[6], c[7]);
+
+                                break;
+
+                            case "AddPosition":
+
+                                AddPosition(c[0]);
+
+                                break;
+
+                            case "AddPayMethod":
+
+                                AddPayMethod(c[0]);
+
+                                break;
+
+                            case "AddConstgnor":
+
+                                AddConstgnor(c[0], c[1], c[2], c[3]);
+
+                                break;
+
+                            case "AddCustomer":
+
+                                AddCustomer(c[0], c[1], c[2], c[3]);
+
+                                break;
+
+                            case "AddSales":
+
+                                AddSales(c[0], c[1], c[2], c[3], c[4], c[5],c[6]);
 
                                     break;
 
-                                case "AddPosition":
-
-                                    AddPosition(c[0], c[1]);
-
-                                    break;
-
-                                case "AddPayMethod":
-
-                                    AddPayMethod(c[0]);
-
-                                    break;
-
-                                case "AddConstgnor":
-
-                                    AddConstgnor(c[0],c[1],c[2],c[3]);
-
-                                    break;
-
-                                case "AddCustomer":
-
-                                    AddCustomer(c[0],c[1],c[2],c[3]);
-
-                                    break;
-
-                                default:
+                            default:
+                            
                                     throw new NotAQueryException();
 
                             }
@@ -158,7 +176,7 @@ namespace MenuStoreApp.Database
                         }
                         else
                         {
-                            throw new EmptyValuesException();
+                        throw new SqlNullValueException();
                         }
 
                 }
@@ -180,7 +198,7 @@ namespace MenuStoreApp.Database
 
                 
 
-                cmd.CommandText =
+                String code =
                         "INSERT INTO CUSTOMERS (" +
                         "customerNAME," +
                         "customerADDRESS," +
@@ -193,32 +211,15 @@ namespace MenuStoreApp.Database
                         "'" + EmailADDRESS + "'" +
                         ");";
 
-                try
-                {
-
-                    conn.Open();
-                    if (conn.State == ConnectionState.Open)
-                    {
-
-                        cmd.ExecuteScalar();
-                        ExecutedCode = ("Completed: \n------\n" + cmd.CommandText + "\n------\n");
-                        Msg = "Process Complete";
-                    }
-
-                }
-                catch (Exception e)
-                {
-                    ExecutedCode = "Error: " + e;
-                    Msg = "Process Falied";
-                }
-                finally { conn.Close(); }
+                Execute(code);
+                
             }
 
             public void AddConstgnor(String ConstgnorNAME, String ConstgnorADDRESS, String cellNUMBER, String EmailADDRESS)
             {
-                
 
-                cmd.CommandText =
+
+                String code =
                         "INSERT INTO CONSIGNORS (" +
                         "ConstgnorNAME," +
                         "ConstgnorADDRESS," +
@@ -231,91 +232,34 @@ namespace MenuStoreApp.Database
                         "'" + EmailADDRESS + "'" +
                         ");";
 
-                try
-                {
-
-                    conn.Open();
-                    if (conn.State == ConnectionState.Open)
-                    {
-
-                        cmd.ExecuteScalar();
-                        ExecutedCode = ("Completed: \n------\n" + cmd.CommandText + "\n------\n");
-                        Msg = "Process Completed";
-                    }
-
-                }
-                catch (Exception e)
-                {
-                    ExecutedCode = "Error: " + e;
-                    Msg = "Process Falied";
-                }
-                finally { conn.Close(); }
+                Execute(code);
             }
 
             public void AddPayMethod(String payTYPE)
             {
-                string ExecutedCode, Msg;
 
-                cmd.CommandText =
+                String code =
                         "INSERT INTO PayMETHOD (" +
                         "payTYPE" +
                         ")VALUES(" +
                         "'" + payTYPE + "'" +
                         ");";
 
-                try
-                {
-
-                    conn.Open();
-                    if (conn.State == ConnectionState.Open)
-                    {
-
-                        cmd.ExecuteScalar();
-                        ExecutedCode = ("Completed: \n------\n" + cmd.CommandText + "\n------\n");
-                        Msg = "Process Complete";
-
-                    }
-
-                }
-                catch (Exception e)
-                {
-                    ExecutedCode = "Error: " + e;
-                    Msg = "Process Falied";
-                }
-                finally { conn.Close(); }
+                Execute(code);
             }
 
-            public void AddPosition(String positionNAME, String SALARY)
+            public void AddPosition(String positionNAME)
             {
                 
 
-                cmd.CommandText =
+                String code =
                         "INSERT INTO POSTION (" +
                         "positionNAME," +
                         ")VALUES(" +
                         "'" + positionNAME + "'" +
                         ");";
 
-                try
-                {
-
-                    conn.Open();
-                    if (conn.State == ConnectionState.Open)
-                    {
-
-                        cmd.ExecuteScalar();
-                        ExecutedCode = ("Completed: \n------\n" + cmd.CommandText + "\n------\n");
-                        Msg = "Process Complete";
-
-                    }
-
-                }
-                catch (Exception e)
-                {
-                    ExecutedCode = "Error: " + e;
-                    Msg = "Process Falied";
-                }
-                finally { conn.Close(); }
+                Execute(code);
             }
 
             public void AddProduct(String CONSIGNOR_ID, String SKU, String productNAME, String UNIT, String PRICE, String OnHAND_QTY, String THRESHOLD, String STATUS_ID)
@@ -323,7 +267,7 @@ namespace MenuStoreApp.Database
 
                
 
-                cmd.CommandText =
+                String code =
                         "INSERT INTO INVENTORY (" +
                         "CONSIGNOR_ID," +
                         "SKU," +
@@ -344,35 +288,17 @@ namespace MenuStoreApp.Database
                         STATUS_ID +
                         ");";
 
-                try
-                {
-
-                    conn.Open();
-                    if (conn.State == ConnectionState.Open)
-                    {
-
-                        cmd.ExecuteScalar();
-                        ExecutedCode = ("Completed: \n------\n" + cmd.CommandText + "\n------\n");
-                        Msg = "Process Complete";
-
-                    }
-
-                }
-                catch (Exception e)
-                {
-                    ExecutedCode = "Error: " + e;
-                    Msg = "Process Falied";
-                }
-                finally { conn.Close(); }
+                Execute(code);
             }
 
 
             public void AddEmployee(String employeeNAME, String employeeGENDER, String employeeADDRESS, String cellNUMBER, String EmailADDRESS, String employeePASSWORD, String DATE_HIRED, String SALARYperMonth, String POSITION_ID)
             {
+                String code;
 
                 if (DATE_HIRED.ToUpper().Equals("NULL"))
                 {
-                    cmd.CommandText =
+                    code =
                             "INSERT INTO EMPLOYEE (" +
                             "employeeNAME," +
                             "employeeGENDER," +
@@ -397,7 +323,7 @@ namespace MenuStoreApp.Database
                 }
                 else
                 {
-                    cmd.CommandText =
+                    code =
                             "INSERT INTO EMPLOYEE (" +
                             "employeeNAME," +
                             "employeeGENDER," +
@@ -421,38 +347,54 @@ namespace MenuStoreApp.Database
                             ");";
                 }
 
-                try
-                {
-
-                    conn.Open();
-                    if (conn.State == ConnectionState.Open)
-                    {
-
-                        cmd.ExecuteScalar();
-                        ExecutedCode = ("Completed: \n------\n" + cmd.CommandText + "\n------\n");
-                        Msg = "Process Complete";
-
-                    }
-
-                }
-                catch (Exception e)
-                {
-                    ExecutedCode = "Error: " + e;
-                    Msg = "Process Falied";
-                }
-                finally { conn.Close(); }
+                Execute(code);
             }
 
         }
 
  //end User Methods:
 
+        //make a method for multiple unique item sales   
+
         public void AddSales(String INVENTORY_ID, String QUANTITY, String SALES_DATE, String CUSTOMER_ID, String EMPLOYEE_ID, String PAYMENT_ID, String paidAMOUNT)
         {
-            
+            int Tranaction_ID = 1;
 
-            cmd.CommandText =
+            cmd.CommandText = 
+                "SELECT MAX(Tranaction_ID) " +
+                "FROM SALES";
+
+            try
+            {
+
+                conn.Open();
+                if (conn.State == ConnectionState.Open)
+                {
+
+                    Tranaction_ID = cmd.ExecuteReader().GetInt32(1);
+                    ExecutedCode = ("Completed: \n------\n" + cmd.CommandText + "\n------\n" + "\n------\n");
+                    Msg = "Process Complete";
+
+                }
+
+            }
+            catch (SqlNullValueException s)
+            {
+
+                ExecutedCode = "Error: " + s;
+                Msg = "Tranaction_ID is now (1)";
+
+            }
+            catch (Exception e)
+            {
+                ExecutedCode = "Error: " + e;
+                Msg = "Process Falied";
+            }
+            finally { conn.Close(); }
+
+            String code1 =
                     "INSERT INTO SALES (" +
+                    "Tranaction_ID ," +
                     "INVENTORY_ID ," +
                     "QUANTITY ," +
                     "SALES_DATE," +
@@ -461,6 +403,7 @@ namespace MenuStoreApp.Database
                     "PAYMENT_ID," +
                     "paidAMOUNT," +
                     ")VALUES(" +
+                    Tranaction_ID + "," +
                     INVENTORY_ID + "," +
                     QUANTITY + "," +
                     "'" + SALES_DATE + "'," +
@@ -479,26 +422,9 @@ namespace MenuStoreApp.Database
                     "UPDATE INVENTORY"+
                     "SET OnHAND_QTY = OnHAND_QTY - " + QUANTITY +
                     "WHERE INVENTORY_ID = " + INVENTORY_ID;
-            try
-            {
+            
+            Execute(code1);
 
-                conn.Open();
-                if (conn.State == ConnectionState.Open)
-                {
-
-                    cmd.ExecuteScalar();
-                    ExecutedCode = ("Completed: \n------\n" + cmd.CommandText + "\n------\n" + "\n------\n");
-                    Msg = "Process Complete";
-
-                }
-
-            }
-            catch (Exception e)
-            {
-                ExecutedCode = "Error: " + e;
-                Msg = "Process Falied";
-            }
-            finally { conn.Close(); }
         }
 
 
@@ -512,15 +438,6 @@ namespace MenuStoreApp.Database
             }
         }
 
-        class EmptyValuesException : Exception
-        {
-            public EmptyValuesException()
-            {
-
-                Console.Write("EmptyValuesException: SQL Query Values can not be empty.");
-
-            }
-        }
-
+      
     }
 }
