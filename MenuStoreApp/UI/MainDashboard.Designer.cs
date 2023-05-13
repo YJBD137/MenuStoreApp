@@ -64,7 +64,7 @@
             panelDashboard.Dock = DockStyle.Left;
             panelDashboard.Location = new Point(0, 0);
             panelDashboard.Name = "panelDashboard";
-            panelDashboard.Size = new Size(390, 1033);
+            panelDashboard.Size = new Size(390, 768);
             panelDashboard.TabIndex = 0;
             // 
             // buttonFinancial
@@ -193,7 +193,7 @@
             labelPosition.ForeColor = Color.White;
             labelPosition.Location = new Point(1056, 77);
             labelPosition.Name = "labelPosition";
-            labelPosition.Size = new Size(91, 25);
+            labelPosition.Size = new Size(74, 18);
             labelPosition.TabIndex = 4;
             labelPosition.Text = "Position";
             // 
@@ -205,7 +205,7 @@
             labelEmployeeName.ForeColor = Color.White;
             labelEmployeeName.Location = new Point(1056, 52);
             labelEmployeeName.Name = "labelEmployeeName";
-            labelEmployeeName.Size = new Size(175, 25);
+            labelEmployeeName.Size = new Size(140, 18);
             labelEmployeeName.TabIndex = 0;
             labelEmployeeName.Text = "Employee Name";
             // 
@@ -222,7 +222,7 @@
             panelTop.Dock = DockStyle.Top;
             panelTop.Location = new Point(390, 0);
             panelTop.Name = "panelTop";
-            panelTop.Size = new Size(1512, 112);
+            panelTop.Size = new Size(976, 112);
             panelTop.TabIndex = 2;
             // 
             // pictureBox1
@@ -257,7 +257,7 @@
             currentForm.ForeColor = Color.White;
             currentForm.Location = new Point(62, 77);
             currentForm.Name = "currentForm";
-            currentForm.Size = new Size(86, 28);
+            currentForm.Size = new Size(72, 23);
             currentForm.TabIndex = 5;
             currentForm.Text = "Home";
             // 
@@ -278,14 +278,15 @@
             panelContents.Dock = DockStyle.Fill;
             panelContents.Location = new Point(390, 112);
             panelContents.Name = "panelContents";
-            panelContents.Size = new Size(1512, 921);
+            panelContents.Size = new Size(976, 656);
             panelContents.TabIndex = 3;
             // 
             // MainDashboard
             // 
-            AutoScaleMode = AutoScaleMode.Inherit;
-            AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            ClientSize = new Size(1902, 1033);
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            AutoSize = true;
+            ClientSize = new Size(1366, 768);
             Controls.Add(panelContents);
             Controls.Add(panelTop);
             Controls.Add(panelDashboard);

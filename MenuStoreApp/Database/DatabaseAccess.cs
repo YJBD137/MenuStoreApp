@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
-using System.Transactions;
 
 namespace MenuStoreApp.Database
 {
@@ -68,7 +66,7 @@ namespace MenuStoreApp.Database
             finally { conn.Close(); }
         }
 
-        public string[]? SColReader(String Code)
+        public string[]? SColReader(String Code) //needs fixing
         {
             string[] result = { };
             cmd.CommandText = Code;
