@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "WeLacedItApp": {
+      "commandName": "Project",
+      "sqlDebugging": false
+    }
+  }
+}

@@ -73,6 +73,16 @@ namespace WeLacedItApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap COLOR_BG_WELACEDIT {
+            get {
+                object obj = ResourceManager.GetObject("COLOR_BG_WELACEDIT", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap COLOR_BG1 {
             get {
                 object obj = ResourceManager.GetObject("COLOR_BG1", resourceCulture);
@@ -163,9 +173,9 @@ namespace WeLacedItApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_consignment_50 {
+        public static System.Drawing.Bitmap icons8_consignment_501 {
             get {
-                object obj = ResourceManager.GetObject("icons8_consignment_50", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_consignment_501", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,9 +193,39 @@ namespace WeLacedItApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_eye_32 {
+        public static System.Drawing.Bitmap icons8_exit_50__1_ {
             get {
-                object obj = ResourceManager.GetObject("icons8_eye_32", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_exit_50__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_eye_321 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_eye_321", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_facebook_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_facebook_50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_facebook_50__1_ {
+            get {
+                object obj = ResourceManager.GetObject("icons8_facebook_50__1_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -203,9 +243,79 @@ namespace WeLacedItApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_home_50 {
+        public static System.Drawing.Bitmap icons8_graph_report_501 {
             get {
-                object obj = ResourceManager.GetObject("icons8_home_50", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_graph_report_501", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_home_501 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_home_501", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_instagram_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_instagram_50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_instagram_50__1_ {
+            get {
+                object obj = ResourceManager.GetObject("icons8_instagram_50__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_maximize_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_maximize_50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_maximize_50__1_ {
+            get {
+                object obj = ResourceManager.GetObject("icons8_maximize_50__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_meta_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_meta_50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_meta_50__1_ {
+            get {
+                object obj = ResourceManager.GetObject("icons8_meta_50__1_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -223,9 +333,9 @@ namespace WeLacedItApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_open_box_50 {
+        public static System.Drawing.Bitmap icons8_minimize_window_50__1_ {
             get {
-                object obj = ResourceManager.GetObject("icons8_open_box_50", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_minimize_window_50__1_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -233,9 +343,19 @@ namespace WeLacedItApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_receipt_50 {
+        public static System.Drawing.Bitmap icons8_open_box_501 {
             get {
-                object obj = ResourceManager.GetObject("icons8_receipt_50", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_open_box_501", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_receipt_501 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_receipt_501", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -263,9 +383,9 @@ namespace WeLacedItApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap icons8_shopping_cart_52 {
+        public static System.Drawing.Bitmap icons8_shopping_cart_521 {
             get {
-                object obj = ResourceManager.GetObject("icons8_shopping_cart_52", resourceCulture);
+                object obj = ResourceManager.GetObject("icons8_shopping_cart_521", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -396,6 +516,16 @@ namespace WeLacedItApp.Properties {
         public static System.Drawing.Bitmap USERNAME_LOGO1 {
             get {
                 object obj = ResourceManager.GetObject("USERNAME_LOGO1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap WeLacedIt {
+            get {
+                object obj = ResourceManager.GetObject("WeLacedIt", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -1,14 +1,16 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.Drawing.Text;
 
-namespace WeLacedItApp.Database
+namespace WeLacedItApp
 {
     public class DatabaseAccess
     {
 
         //Made by Yuan Jason B. Dimayuga
 
+        public string User;
         private string user;
 
         SqlConnection conn;
@@ -19,7 +21,7 @@ namespace WeLacedItApp.Database
         public DatabaseAccess(string UserId, string Password)
         {
 
-            user = @"Data Source = DESKTOP-0I7BTFQ; Initial Catalog = Project_Inv; User Id = " + UserId + "; Password = " + Password + ";";
+            user = @"Data Source = DESKTOP-0I7BTFQ; Initial Catalog = WeLacedIt; User Id = " + UserId + "; Password = " + Password + ";";
             conn = new SqlConnection(user);
             cmd = new SqlCommand(user, conn);
 
@@ -31,8 +33,13 @@ namespace WeLacedItApp.Database
                 conn.Open();
                 if (conn.State == ConnectionState.Open)
                 {
+
                     isConnected = true;
-                    Msg = "\n------\n" + "Connected" + "\n------\n";
+                    Msg = "Connected";
+                    ExecutedCode = "Login Success";
+                    User = UserId;
+
+
                 }
 
             }
@@ -44,7 +51,42 @@ namespace WeLacedItApp.Database
             finally { conn.Close(); }
         }
 
-        public void Execute(string Code)
+        public DatabaseAccess(DatabaseAccess databaseAccess)
+        {
+
+            user = databaseAccess.GetUser();
+            conn = new SqlConnection(user);
+            cmd = new SqlCommand(user, conn);
+
+            cmd.CommandTimeout = 60;
+
+            try
+            {
+
+                conn.Open();
+                if (conn.State == ConnectionState.Open)
+                {
+
+                    isConnected = true;
+                    Msg = "Connected";
+                    ExecutedCode = "Login Success";
+                    User = databaseAccess.User;
+
+
+                }
+
+            }
+            catch (Exception e)
+            {
+                ExecutedCode = "Error: " + e;
+                Msg = "Process Falied";
+            }
+            finally { conn.Close(); }
+        }
+
+        public string GetUser() { return this.user; }
+
+        public void ScalarExecute(string Code)
         {
             cmd.CommandText = Code;
 
@@ -69,10 +111,13 @@ namespace WeLacedItApp.Database
             finally { conn.Close(); }
         }
 
-        public string[]? SColReader(string Code) //needs fixing
+        public SqlDataReader ScalarReader(string Collums, string Table, string Condition)
         {
-            string[] result = { };
-            cmd.CommandText = Code;
+            cmd.CommandText = "SELECT " + Collums +
+                              "FROM " + Table+ 
+                              "WHERE " + Condition;
+
+            SqlDataReader sqlData = null;
 
             try
             {
@@ -81,20 +126,9 @@ namespace WeLacedItApp.Database
                 if (conn.State == ConnectionState.Open)
                 {
 
-                    SqlDataReader col = cmd.ExecuteReader();
-
-                    for (int i = 1; col.Read(); i++)
-                    {
-
-                        result = new string[col.FieldCount];
-                        result.SetValue(col, i - 1);
-
-                    }
-
-                    ExecutedCode = "Completed: \n------\n" + cmd.CommandText + "\n------\n";
+                    sqlData = cmd.ExecuteReader();
+                    ExecutedCode = "Completed: \n------\n Read: " + cmd.CommandText + "\n------\n";
                     Msg = "Process Complete";
-
-                    return result;
                 }
 
             }
@@ -104,9 +138,39 @@ namespace WeLacedItApp.Database
                 Msg = "Process Falied";
             }
             finally { conn.Close(); }
+            
+            return sqlData;
+        }
 
-            return result;
+        public DataTable GetTable (string Table)
+        {
+            DataTable data = new DataTable();
 
+            try
+            {
+
+                conn.Open();
+                if (conn.State == ConnectionState.Open)
+                {
+                    SqlDataAdapter sqlData = new SqlDataAdapter("SELECT * FROM " + Table, conn);
+                    sqlData.Fill(data);
+
+                    ExecutedCode = "Completed: \n------\n Got table " + Table + "\n------\n";
+                    Msg = "Process Complete";
+                }
+
+            }
+            catch (Exception e)
+            {
+                ExecutedCode = "Error: " + e;
+                Msg = "Process Falied";
+
+
+            }
+            finally{conn.Close();}
+
+                return data;
+  
         }
 
         // Setup Methods
@@ -161,7 +225,7 @@ namespace WeLacedItApp.Database
 
                             case "AddSales":
 
-                                AddSales(c[0], c[1], c[2], c[3], c[4], c[5], c[6]);
+                                AddSales(c[0], c[1], c[2], c[3], c[4], Convert.ToInt32(c[5]));
 
                                 break;
 
@@ -210,7 +274,7 @@ namespace WeLacedItApp.Database
                         "'" + EmailADDRESS + "'" +
                         ");";
 
-                Execute(code);
+                ScalarExecute(code);
             }
 
             public void AddPayMethod(string payTYPE)
@@ -223,7 +287,7 @@ namespace WeLacedItApp.Database
                         "'" + payTYPE + "'" +
                         ");";
 
-                Execute(code);
+                ScalarExecute(code);
             }
 
             public void AddPosition(string positionNAME)
@@ -237,7 +301,7 @@ namespace WeLacedItApp.Database
                         "'" + positionNAME + "'" +
                         ");";
 
-                Execute(code);
+                ScalarExecute(code);
             }
 
             public void AddProduct(string CONSIGNOR_ID, string SKU, string productNAME, string UNIT, string PRICE, string OnHAND_QTY, string THRESHOLD, string STATUS_ID)
@@ -252,8 +316,6 @@ namespace WeLacedItApp.Database
                         "productNAME," +
                         "UNIT," +
                         "PRICE," +
-                        "OnHAND_QTY," +
-                        "THRESHOLD," +
                         "STATUS_ID" +
                         ")VALUES(" +
                         "'" + CONSIGNOR_ID + "'," +
@@ -261,12 +323,10 @@ namespace WeLacedItApp.Database
                         "'" + productNAME + "'," +
                         "'" + UNIT + "'," +
                         PRICE + "," +
-                        OnHAND_QTY + "," +
-                        THRESHOLD + "," +
                         STATUS_ID +
                         ");";
 
-                Execute(code);
+                ScalarExecute(code);
             }
 
 
@@ -325,7 +385,7 @@ namespace WeLacedItApp.Database
                             ");";
                 }
 
-                Execute(code);
+                ScalarExecute(code);
             }
 
         }
@@ -334,7 +394,7 @@ namespace WeLacedItApp.Database
 
         //make a method for multiple unique item sales   
 
-        public void AddSales(string INVENTORY_ID, string QUANTITY, string SALES_DATE, string CUSTOMER_ID, string EMPLOYEE_ID, string PAYMENT_ID, string paidAMOUNT)
+        public void AddSales(string INVENTORY_ID, string SALES_DATE, string EMPLOYEE_ID, string PAYMENT_ID, string paidAMOUNT,int lines)
         {
             int Tranaction_ID = 1;
 
@@ -374,18 +434,14 @@ namespace WeLacedItApp.Database
                     "INSERT INTO SALES (" +
                     "Tranaction_ID ," +
                     "INVENTORY_ID ," +
-                    "QUANTITY ," +
                     "SALES_DATE," +
-                    "CUSTOMER_ID," +
                     "EMPLOYEE_ID ," +
                     "PAYMENT_ID," +
                     "paidAMOUNT," +
                     ")VALUES(" +
                     Tranaction_ID + "," +
                     INVENTORY_ID + "," +
-                    QUANTITY + "," +
                     "'" + SALES_DATE + "'," +
-                    CUSTOMER_ID + "," +
                     EMPLOYEE_ID + "," +
                     PAYMENT_ID + "," +
                     paidAMOUNT + "," +
@@ -398,10 +454,10 @@ namespace WeLacedItApp.Database
                     ");" +
 
                     "UPDATE INVENTORY" +
-                    "SET OnHAND_QTY = OnHAND_QTY - " + QUANTITY +
+                    "SET STATUS_ID = 3" +
                     "WHERE INVENTORY_ID = " + INVENTORY_ID;
 
-            Execute(code1);
+            ScalarExecute(code1);
 
         }
 
