@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Setup.cs" />
+    <None Remove="UI\Resources\WeLacedIt.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +26,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Update="UI\MainDashboardAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -36,8 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\" />
-    <Folder Include="UI\" />
+    <Resource Include="UI\Resources\WeLacedIt.jpg" />
   </ItemGroup>
 
 </Project>
